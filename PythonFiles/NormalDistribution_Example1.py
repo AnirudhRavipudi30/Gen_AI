@@ -1,0 +1,37 @@
+# Function to compute mean, median, and mode manually
+def compute_statistics(data):
+    """Computes mean, median, and mode manually for a dataset."""
+    n = len(data)
+    
+    # Mean
+    mean = sum(data) / n
+    
+    # Median
+    sorted_data = sorted(data)
+    if n % 2 == 0:
+        median = (sorted_data[n // 2 - 1] + sorted_data[n // 2]) / 2
+    else:
+        median = sorted_data[n // 2]
+    
+    # Mode (most frequent value)
+    frequency = {}
+    for num in data:
+        frequency[num] = frequency.get(num, 0) + 1
+    mode = max(frequency, key=frequency.get)
+
+    return mean, median, mode
+
+# Example: Normal distribution-like data
+data = [150, 160, 165, 170, 175, 180, 185, 170, 170, 172]
+
+mean, median, mode = compute_statistics(data)
+
+print(f"Mean: {mean:.2f}")
+print(f"Median: {median}")
+print(f"Mode: {mode}")
+
+# Check if they are equal
+if mean == median == mode:
+    print("✅ The dataset is perfectly normally distributed!")
+else:
+    print("❌ The dataset is NOT perfectly normally distributed!")
